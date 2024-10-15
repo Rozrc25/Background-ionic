@@ -2,7 +2,8 @@ import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/r
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
-import Page from './pages/Page';
+import  BGFetch  from './pages/BGFetch'
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -33,10 +34,15 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import { useEffect, useRef } from 'react';
+import Dashboard from './pages/dashboard';
 
 setupIonicReact();
 
 const App: React.FC = () => {
+ 
+  
+
   return (
     <IonApp>
       <IonReactRouter>
@@ -44,10 +50,11 @@ const App: React.FC = () => {
           <Menu />
           <IonRouterOutlet id="main">
             <Route path="/" exact={true}>
-              <Redirect to="/folder/Inbox" />
+              <Redirect to="/pages/dashboard" />
             </Route>
-            <Route path="/folder/:name" exact={true}>
-              <Page />
+            <Route path="/pages/dashboard" component={Dashboard} exact={true}>
+            </Route>
+            <Route path="/pages/bgfetch" component={BGFetch} exact={true}>
             </Route>
           </IonRouterOutlet>
         </IonSplitPane>
